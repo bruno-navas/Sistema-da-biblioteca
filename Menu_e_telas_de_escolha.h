@@ -6,7 +6,7 @@
 
 #define CLEAR "cls"
 
-void introducao()
+void introducao() // funcao responsavel por alocar dinamicamente o tamanho das structs e limpar os arquivos e structs de qualquer resquicio acumulado durante a inicialização
 {
     limpar_livros();
     limpar_pessoas();
@@ -22,7 +22,7 @@ void introducao()
     Devolucoes = calloc(3*QtdePessoas, sizeof(t_devolucoes));
 }
 
-void menu()
+void menu() // funcao responsavel por permitir acesso aos menus secundários e as funções do sistema
 {
     system(CLEAR);
     int opcao;
@@ -63,7 +63,7 @@ void menu()
     }
 }
 
-void acrescentar_dados()
+void acrescentar_dados() // menu secundario que permite acesso ao registro de livros e usuários
 {
     system(CLEAR);
     int opcao;
@@ -91,7 +91,7 @@ void acrescentar_dados()
     }
 }
 
-void consultar_dados()
+void consultar_dados() // menu secundário que permite a busca por livros e usuários, como também aos relatórios do sistema (tudo que foi realizado pelo sistema)
 {
     system(CLEAR);
     int opcao;
