@@ -5,7 +5,7 @@ Link para os slides da apresentação: https://www.canva.com/design/DAFn51-OHpE/
 
 Arquivo em pdf dos slides da apresentação: [Biblioteca.pdf](https://github.com/bruno-navas/Sistema-da-biblioteca/files/12032610/Biblioteca.pdf)
 
-Link do vídeo da apresentação: https://clipchamp.com/watch/FHm9Zkr8bTo
+Link do vídeo da apresentação: https://youtu.be/9hZAlS4TTJM
 
 Link para o Google Drive com todas os arquivos do trabalho: https://drive.google.com/drive/folders/1n8RlHRntYLoYM6c8EQuKDLa3aGDzUNHM?usp=drive_link
 
