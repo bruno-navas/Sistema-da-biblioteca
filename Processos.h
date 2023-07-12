@@ -52,7 +52,7 @@ void registrar_emprestimo()
 	getchar(); // evita problemas com o buffer de teclado
 	while (parada == 1)
 	{
-    printf("Codigo do Livro emprestado: ");
+    		printf("Codigo do Livro emprestado: ");
 		fflush(stdin);
 		scanf(" %d", &checa); // le o codigo procurado pelo usuario
 		for (j = 0; j <= LivrosRegistrados; j++) // verifica se o codigo existe/se o emprestimo e possivel
