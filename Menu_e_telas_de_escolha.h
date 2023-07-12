@@ -1,9 +1,5 @@
 #ifndef Menu_e_telas_de_escolha_H_INCLUDED
 #define Menu_e_telas_de_escolha_H_INCLUDED
-
-// #include "Processos.h"
-// #include "Structs_e_variáveis.h"
-
 #define CLEAR "cls"
 
 void introducao() // funcao responsavel por alocar dinamicamente o tamanho das structs e limpar os arquivos e structs de qualquer resquicio acumulado durante a inicialização
