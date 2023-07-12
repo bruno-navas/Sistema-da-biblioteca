@@ -11,40 +11,41 @@ void registrar_emprestimo()
   system(CLEAR); // limpa a tela
 
 	int checa, erro, parada, j; // variaveis locais auxiliares e de loop
-	char temp;					// variavel temporaria
-	int opc;					// variavel de opcao do usuario no menu
-	int novaQtde;				// utilizada caso o usuario deseje acrescentar mais exemplares de um livro
+	char temp; // variavel temporaria
+	int opc; // variavel de opcao do usuario no menu
+	int novaQtde; // utilizada caso o usuario deseje acrescentar mais exemplares de um livro
 
 	parada = 1;
 	erro = 1; // inicializa as variaveis com 1
 
 	if (LivrosRegistrados == 0 && PessoasRegistradas == 0)  // garante que a aba de emprestimos nao pode ser acessada caso nao existam livros e pessoas registradas
-	{			red();
-        printf("Nao ha livros nem usuarios registrados no sistema, um emprestimo nao pode ser realizado!\n");
-        white();
-        getchar();
-        temp = getchar();
-        menu();
+	{			
+		red();
+	        printf("Nao ha livros nem usuarios registrados no sistema, um emprestimo nao pode ser realizado!\n");
+	        white();
+	        getchar();
+	        temp = getchar();
+	        menu();
 	}
 
 	if (LivrosRegistrados == 0)
 	{
-        red();
-        printf("Nao ha livros registrados no sistema, um emprestimo nao pode ser realizado!\n");
-        white();
-        getchar();
-        temp = getchar();
-        menu();
+	        red();
+	        printf("Nao ha livros registrados no sistema, um emprestimo nao pode ser realizado!\n");
+	        white();
+	        getchar();
+	        temp = getchar();
+	        menu();
 	}
 
 	if (PessoasRegistradas == 0)
 	{
-        red();
-        printf("Nao ha usuarios registrados no sistema, um emprestimo nao pode ser realizado!\n");
-        white();
-        getchar();
-        temp = getchar();
-        menu();
+	        red();
+	        printf("Nao ha usuarios registrados no sistema, um emprestimo nao pode ser realizado!\n");
+	        white();
+	        getchar();
+	        temp = getchar();
+	        menu();
 	}
 
 	printf(">>REGISTRAR EMPRESTIMO<<\n");
@@ -53,7 +54,7 @@ void registrar_emprestimo()
 	{
     printf("Codigo do Livro emprestado: ");
 		fflush(stdin);
-		scanf(" %d", &checa);					 // le o codigo procurado pelo usuario
+		scanf(" %d", &checa); // le o codigo procurado pelo usuario
 		for (j = 0; j <= LivrosRegistrados; j++) // verifica se o codigo existe/se o emprestimo e possivel
 		{
 			if (Livros[j].codigo == checa && Livros[j].qtdeDisp > 0) // emprestimo possivel (livro existe e ha exemplares disponiveis)
@@ -75,7 +76,7 @@ void registrar_emprestimo()
 				if (opc == 1)
 				{
 					printf("Insira a nova quantidade de exemplares: ");
-					scanf("%d", &novaQtde);								// le a nova quantidade total de exemplares
+					scanf("%d", &novaQtde); // le a nova quantidade total de exemplares
 					Livros[j].qtdeDisp = Livros[j].qtdeDisp + novaQtde; // atualiza a quantidade de exemplares disponiveis do livro com o codigo informado
 					Emprestimos[numEmp].livro = checa;
 					erro = 0;
@@ -101,7 +102,7 @@ void registrar_emprestimo()
 		}
 		if (erro == 1)
 		{
-            red();
+           		red();
 			printf("\nLivro nao existente nos registros, tente novamente\n\n");
 			white();
 		}
@@ -112,14 +113,14 @@ void registrar_emprestimo()
 
 	while (parada == 1)
 	{
-    printf("Codigo do Usuario: ");
+   		printf("Codigo do Usuario: ");
 		fflush(stdin);
 		scanf(" %d", &checa); // le o codigo do usuario que deseja emprestar o livro
 		for (j = 0; j <= PessoasRegistradas; j++)
 		{
 			if (Pessoas[j].codigo == checa) // pessoa existe no sistema
 			{
-                Emprestimos[numEmp].pessoa = checa;
+                		Emprestimos[numEmp].pessoa = checa;
 				parada = 0;
 				erro = 0;
 				break; // sai do loop
@@ -135,9 +136,8 @@ void registrar_emprestimo()
 
 	printf("Data de emprestimo: ");
 	fflush(stdin);
-	scanf(" %d%d", &Emprestimos[numEmp].dataEmp_dia,
-		  &Emprestimos[numEmp].dataEmp_mes); // le dia e mes do emprestimo
-    Emprestimos[numEmp].dataDev_dia = Emprestimos[numEmp].dataDev_mes = 0;
+	scanf(" %d%d", &Emprestimos[numEmp].dataEmp_dia, &Emprestimos[numEmp].dataEmp_mes); // le dia e mes do emprestimo
+    	Emprestimos[numEmp].dataDev_dia = Emprestimos[numEmp].dataDev_mes = 0;
 
 	green();
 	printf("\nEmprestimo salvo com sucesso!");
@@ -149,7 +149,7 @@ void registrar_emprestimo()
 
 	if (ArqEmprestimos == NULL) // avisa caso o arquivo nao tenha possa ser aberto
 	{
-	    red();
+	   	red();
 		printf("Erro ao salvar em disco!\n");
 		white();
 		getchar();
@@ -159,12 +159,9 @@ void registrar_emprestimo()
 
 	// salva em um arquivo txt os dados
 	fprintf(ArqEmprestimos, "Dados do emprestimo %d\n", numEmp + 1);
-	fprintf(ArqEmprestimos, "Código do livro emprestado: %d\n",
-			Emprestimos[numEmp].livro);
-	fprintf(ArqEmprestimos, "Codigo do aluno: %d\n",
-			Emprestimos[numEmp].pessoa);
-	fprintf(ArqEmprestimos, "Data do emprestimo: %d/%d\n\n",
-			Emprestimos[numEmp].dataEmp_dia, Emprestimos[numEmp].dataEmp_mes);
+	fprintf(ArqEmprestimos, "Código do livro emprestado: %d\n", Emprestimos[numEmp].livro);
+	fprintf(ArqEmprestimos, "Codigo do aluno: %d\n", Emprestimos[numEmp].pessoa);
+	fprintf(ArqEmprestimos, "Data do emprestimo: %d/%d\n\n", Emprestimos[numEmp].dataEmp_dia, Emprestimos[numEmp].dataEmp_mes);
 
 	fclose(ArqEmprestimos); // fecha o arquivo
 
@@ -233,7 +230,7 @@ void registrar_devolucao()
 
     if (ArqDevolucoes == NULL) // avisa caso o arquivo nao tenha possa ser aberto
 	{
-	    red();
+	      	red();
 		printf("Erro ao salvar em disco!\n");
 		white();
 		getchar();
@@ -257,7 +254,7 @@ void registrar_livro()
 {
 	system(CLEAR); // limpa a tela
 
-	char temp;					// variavel temporaria
+	char temp; // variavel temporaria
 	int checa, parada, erro, i; // variaveis locais auxiliares e de loop
 	parada = 1;
 	erro = 1; // inicializa os valores das variaveis
@@ -279,9 +276,9 @@ void registrar_livro()
 
 	while (parada == 1)
 	{
-        printf("Codigo: ");
+        	printf("Codigo: ");
 		fflush(stdin);
-		scanf("%d", &checa);					// le o codigo do livro registrado
+		scanf("%d", &checa); // le o codigo do livro registrado
 		for (i = 0; i < LivrosRegistrados; i++) // verifica se o codigo inserido e valido
 		{
 			if (Livros[i].codigo == checa) // codigo valido, nao usado anteriormente
@@ -303,13 +300,13 @@ void registrar_livro()
 		if (erro == 1)
 		{
 			Livros[LivrosRegistrados].codigo = checa; // armazena o codigo lido no vetor
-			parada = 0;								  // sai do loop
+			parada = 0; // sai do loop
 		}
 	}
 
 	printf("Quantidade de exemplares: ");
 	fflush(stdin);
-	scanf("%d", &Livros[LivrosRegistrados].qtdeDisp);							// le a quantidade de exemplares disponiveis
+	scanf("%d", &Livros[LivrosRegistrados].qtdeDisp); // le a quantidade de exemplares disponiveis
 	Livros[LivrosRegistrados].qtdeInicial = Livros[LivrosRegistrados].qtdeDisp; // a quantidade disponivel de livros inicialmente e a quantidade inicial
 	green();
 	printf("\nLivro registrado com sucesso!");
@@ -321,7 +318,7 @@ void registrar_livro()
 
 	if (ArqLivros == NULL) // informa caso nao seja possivek abrir o arquivo
 	{
-	    red();
+	    	red();
 		printf("Erro ao salvar em disco!\n");
 		white();
 		getchar();
@@ -348,7 +345,7 @@ void registrar_pessoa()
 {
 	system(CLEAR); // limpa a tela
 
-	char temp;					// variavel temporaria
+	char temp; // variavel temporaria
 	int checa, parada, erro, i; // variaveis locais auxiliares e de loop
 	parada = 1;
 	erro = 1; // inicializa as variaveis com valores adequados
@@ -366,9 +363,9 @@ void registrar_pessoa()
 
 	while (parada == 1)
 	{
-        printf("Codigo: ");
+        	printf("Codigo: ");
 		fflush(stdin);
-		scanf("%d", &checa);					 // le o codigo da pessoa
+		scanf("%d", &checa); // le o codigo da pessoa
 		for (i = 0; i < PessoasRegistradas; i++) // verifica se o codigo e valido
 		{
 			if (Pessoas[i].codigo == checa) // codigo valido, nao usado anteriormente
@@ -390,7 +387,7 @@ void registrar_pessoa()
 		if (erro == 1)
 		{
 			Pessoas[PessoasRegistradas].codigo = checa; // atribui o codigo ao usuario
-			parada = 0;									// sai do loop
+			parada = 0; // sai do loop
 		}
 	}
 
@@ -404,7 +401,7 @@ void registrar_pessoa()
 
 	if (ArqPessoas == NULL) // informa se houve erro ao salvar em disco
 	{
-	    red();
+	    	red();
 		printf("Erro ao salvar em disco!\n");
 		white();
 		getchar();
@@ -431,13 +428,13 @@ void buscar_livro()
 
 	int codigoBuscado; // variavel com o codigo procurado
 	int i, erro;	   // variaveis auxiliares e de loop
-	char temp;		   // variavel temporaria
+	char temp;	   // variavel temporaria
 
 	erro = 1; // atribui valor para a variavel
 
 	printf(">>BUSCAR DADOS<<\n");
 	printf("Insira o codigo do livro: ");
-	scanf("%d", &codigoBuscado);			 // le o codigo procurado
+	scanf("%d", &codigoBuscado);	         // le o codigo procurado
 	for (i = 0; i <= LivrosRegistrados; i++) // verifica se o codigo existe no sistema
 	{
 		if (Livros[i].codigo == codigoBuscado) // codigo encontrado, mostra dados do livro
@@ -454,15 +451,14 @@ void buscar_livro()
 			temp = getchar(); // sai da pagina com enter
 		}
 	}
-	if (erro == 1)
-	{ // codigo nao encontrado
+	if (erro == 1) // codigo nao encontrado
+	{ 	
 		red();
 		printf("\nLivro nao encontrado!\n");
 		white();
 		getchar();
-        temp = getchar();
+        	temp = getchar();
 	}
-
 	menu();
 }
 
@@ -473,13 +469,13 @@ void buscar_pessoa()
 
 	int codigoBuscado; // armazena o codigo buscado
 	int i, erro;	   // variaveis auxiliares e de loop
-	char temp;		   // variavel temporria
+	char temp;	   // variavel temporria
 
 	erro = 1;
 
 	printf(">>BUSCAR DADOS<<\n");
 	printf("Insira o codigo do usuario: ");
-	scanf("%d", &codigoBuscado);			  // le o codigo procurado
+	scanf("%d", &codigoBuscado);		  // le o codigo procurado
 	for (i = 0; i <= PessoasRegistradas; i++) // busca o codigo no sistema
 	{
 		if (Pessoas[i].codigo == codigoBuscado) // encontrou o codigo, mostra dados
@@ -494,13 +490,13 @@ void buscar_pessoa()
 			temp = getchar();
 		}
 	}
-	if (erro == 1)
-	{ // nao encontrou o codigo, mostra mensagem de erro
+	if (erro == 1) // nao encontrou o codigo, mostra mensagem de erro
+	{ 
 		red();
 		printf("Usuario nao encontrado");
 		white();
 		getchar();
-        temp = getchar();
+        	temp = getchar();
 	}
 
 	menu();
@@ -511,11 +507,11 @@ void checar_pessoa()
 {
 	system(CLEAR); // limpa a tela
 
-	int opc, j;					  // variaveis auxiliares e de loop
-	int novaQtdePessoas;		  // armazena a nova quantidade de pessoas escolhida pelo usuario
-	t_pessoa *tempPessoa;		  // vetor para armazenar temporariamente dados de pessoas
-	t_emprestimo *tempEmprestimo; // vetor para armazenar temporariamente dados de emprestimos
-	t_devolucoes *tempDevolucao;  // vetor para armazenar temporariamente dados de devolucoes
+	int opc, j;		       // variaveis auxiliares e de loop
+	int novaQtdePessoas;	       // armazena a nova quantidade de pessoas escolhida pelo usuario
+	t_pessoa *tempPessoa;	       // vetor para armazenar temporariamente dados de pessoas
+	t_emprestimo *tempEmprestimo;  // vetor para armazenar temporariamente dados de emprestimos
+	t_devolucoes *tempDevolucao;   // vetor para armazenar temporariamente dados de devolucoes
 
 	if (PessoasRegistradas == QtdePessoas - 1)
 	{
@@ -528,10 +524,10 @@ void checar_pessoa()
 		if (opc == 1)	   // caso o usuario deseje acrescentar mais pessoas
 		{
 			printf("Quantas pessoas frequentam a biblioteca?");
-			scanf("%d", &novaQtdePessoas);										// le a nova quantidade de pessoas escolhida pelo usuario
+			scanf("%d", &novaQtdePessoas); // le a nova quantidade de pessoas escolhida pelo usuario
 			tempPessoa = (t_pessoa *)calloc(novaQtdePessoas, sizeof(t_pessoa));
 			tempEmprestimo = (t_emprestimo *)calloc(3*novaQtdePessoas, sizeof(t_emprestimo));
-			tempDevolucao  = (t_devolucoes *)calloc(3*novaQtdePessoas, sizeof(t_devolucoes));// cria um vetor temporario
+			tempDevolucao  = (t_devolucoes *)calloc(3*novaQtdePessoas, sizeof(t_devolucoes)); // cria um vetor temporario
 			for (j = 0; j < QtdePessoas; j++)
 			{
 				tempPessoa[j] = Pessoas[j]; // armazena os dados do vetor anterior no vetor temporario
@@ -541,7 +537,7 @@ void checar_pessoa()
 				tempEmprestimo[j] = Emprestimos[j];
 				tempDevolucao[j] = Devolucoes[j]; // armazena os dados do vetor anterior no vetor temporario
 			}
-			free(Pessoas);													 // libera o vetor inicial de pessoas
+			free(Pessoas); // libera o vetor inicial de pessoas
 			Pessoas = (t_pessoa *)calloc(novaQtdePessoas, sizeof(t_pessoa)); // aloca memoria no vetor original
 			for (j = 0; j < QtdePessoas; j++)
 			{
@@ -549,7 +545,7 @@ void checar_pessoa()
 			}
 
 			free(Emprestimos); // libera o vetor inicial de emprestimos
-			free(Devolucoes); //libera o vetor inicial de devolucoes
+			free(Devolucoes); // libera o vetor inicial de devolucoes
 
 			Emprestimos = (t_emprestimo *)calloc(3*novaQtdePessoas, sizeof(t_emprestimo));
 			Devolucoes = (t_devolucoes *)calloc(3*novaQtdePessoas, sizeof(t_devolucoes)); // aloca memoria no vetor original
@@ -578,7 +574,7 @@ void checar_livro()
 {
 	system(CLEAR); // limpa a tela
 
-	int opc, j;			// variaveis auxiliares e de loop
+	int opc, j;	    // variaveis auxiliares e de loop
 	int novaQtdeLivros; // armazena a nova quantidade de livros escolhida pelo usuario
 	t_livro *tempLivro; // vetor temporario
 
@@ -591,20 +587,20 @@ void checar_livro()
 	if (opc == 1)	   // caso o usuario deseje acrescentar mais livros
 	{
 		printf("Quantos livros na biblioteca?");
-		scanf("%d", &novaQtdeLivros);									// le a nova quantidade de livros
+		scanf("%d", &novaQtdeLivros); // le a nova quantidade de livros
 		tempLivro = (t_livro *)calloc(novaQtdeLivros, sizeof(t_livro)); // aloca memoria em vetor temporario
 		for (j = 0; j < QtdeLivros; j++)
 		{
 			tempLivro[j] = Livros[j]; // preenche o vetor temporario com os dados do original
 		}
-		free(Livros);												 // libera o vetor original
+		free(Livros); // libera o vetor original
 		Livros = (t_livro *)calloc(novaQtdeLivros, sizeof(t_livro)); // aloca memoria no vetor original
 		for (j = 0; j < QtdeLivros; j++)
 		{
 			Livros[j] = tempLivro[j]; // preenche o vetor original com os dados do temporario
 		}
 		QtdeLivros = novaQtdeLivros; // atualiza a quantidade de livros
-		free(tempLivro);			 // libera o vetor temporario de
+		free(tempLivro); // libera o vetor temporario
 	}
 	else // caso o usuario nao deseje acrescentar mais livros
 	{
@@ -692,7 +688,7 @@ void relatorios()
 		printf("Codigo do usuario: %d\n", Emprestimos[i].pessoa);
 		printf("Data do emprestimo: %d/%d\n", Emprestimos[i].dataEmp_dia, Emprestimos[i].dataEmp_mes);
 		if (Emprestimos[i].dataDev_dia != 0 && Emprestimos[i].dataDev_mes != 0){  // a data de devolucao so e printada caso seja adicionada durante a devolucao
-            printf("Data da devolucao: %d/%d\n\n", Emprestimos[i].dataDev_dia, Emprestimos[i].dataDev_mes);
+           	printf("Data da devolucao: %d/%d\n\n", Emprestimos[i].dataDev_dia, Emprestimos[i].dataDev_mes);
 		}
 	}
 
